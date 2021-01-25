@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel by lazy { ViewModelProvider(this).get(MainviewModel::class.java) }
-    private val adapter = EqAdapter()
+    private val adapter = EqAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

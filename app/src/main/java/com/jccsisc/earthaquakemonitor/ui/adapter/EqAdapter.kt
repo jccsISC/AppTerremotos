@@ -1,17 +1,21 @@
 package com.jccsisc.earthaquakemonitor.ui.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.jccsisc.earthaquakemonitor.R
 import com.jccsisc.earthaquakemonitor.data.model.EarthquakeModel
 import com.jccsisc.earthaquakemonitor.databinding.ItemEqBinding
+import kotlin.coroutines.coroutineContext
+
 //darle el nombre de la clase a nuestro TAG
 private val TAG = EqAdapter::class.java.simpleName
 //extendemos de un ListAdapter                                    recibimos el DiffCallback
-class EqAdapter: ListAdapter<EarthquakeModel, EqAdapter.EqViewHolder>(DiffCallback) {
+class EqAdapter(private val context: Context): ListAdapter<EarthquakeModel, EqAdapter.EqViewHolder>(DiffCallback) {
 
     //click con Lambda al dale clic nos retorna un terremoto
     lateinit var onItemClickListener: (EarthquakeModel) -> Unit
@@ -44,7 +48,7 @@ class EqAdapter: ListAdapter<EarthquakeModel, EqAdapter.EqViewHolder>(DiffCallba
     inner class EqViewHolder(private val binding: ItemEqBinding) : RecyclerView.ViewHolder(binding.root) {
         //creando un metodo par recibir un modelo
         fun bind(earthquake: EarthquakeModel) = with(binding) {
-            tvMagnitude.text = earthquake.magnintude.toString()
+            tvMagnitude.text = context.getString(R.string.magnitude_format, earthquake.magnintude)
             tvPlace.text = earthquake.place
 
             root.setOnClickListener {

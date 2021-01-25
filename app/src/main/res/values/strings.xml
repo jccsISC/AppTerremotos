@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">EarthaquakeMonitor</string>
-    <string name="lista_vacia">Lista Vacía...</string>
+    <string name="lista_vacia">Lista Vacía…</string>
+    <string name="magnitude_format">%.2f</string>
 </resources>
