@@ -5,4 +5,6 @@
     <string name="logitude">Longitude</string>
     <string name="latitude">Latitude</string>
     <string name="richter">Richter</string>
+    <string name="sort_by_time">Ordenar por tiempo</string>
+    <string name="sort_by_magnitude">Ordenar por magnitud</string>
 </resources>

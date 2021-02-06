@@ -3,12 +3,15 @@ package com.jccsisc.earthaquakemonitor.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jccsisc.earthaquakemonitor.DetailsActivity
 import com.jccsisc.earthaquakemonitor.EarthquakeModel
+import com.jccsisc.earthaquakemonitor.R
 import com.jccsisc.earthaquakemonitor.api.StatusResponse
 import com.jccsisc.earthaquakemonitor.databinding.ActivityMainBinding
 
@@ -53,6 +56,25 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("model", it)
             startActivity(intent)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val itemId = item.itemId
+        when(itemId) {
+            R.id.main_menu_sort_magnitude -> {
+                viewModel.reloadEarthquakes(true)
+            }
+            R.id.main_menu_sort_time -> {
+                viewModel.reloadEarthquakes(false)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun emptyView(it: MutableList<EarthquakeModel>) {

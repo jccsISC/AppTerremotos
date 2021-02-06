@@ -3,6 +3,7 @@ package com.jccsisc.earthaquakemonitor.main
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.jccsisc.earthaquakemonitor.EarthquakeModel
 import com.jccsisc.earthaquakemonitor.api.StatusResponse
 import com.jccsisc.earthaquakemonitor.database.getDatabase
 import kotlinx.coroutines.*
@@ -19,18 +20,21 @@ class MainviewModel(application: Application): AndroidViewModel(application) {
     val status: LiveData<StatusResponse>
     get() = _status
 
-    val eqList = repo.eqList
+    private val _eqList = MutableLiveData<MutableList<EarthquakeModel>>()
+    val eqList: LiveData<MutableList<EarthquakeModel>>
+    get() = _eqList
 
     init {
+        reloadEarthquakes(false)
+    }
+
+    fun reloadEarthquakes(sortByMagnitude: Boolean) {
         viewModelScope.launch {
             try {
                 _status.value = StatusResponse.LOADING
-
-                repo.fetchEartquakes()
-
+                _eqList.value = repo.fetchEartquakes(sortByMagnitude)
                 _status.value = StatusResponse.DONE
-            }catch (e: UnknownHostException) {
-
+            } catch (e: UnknownHostException) {
                 _status.value = StatusResponse.NOT_INTERNET_CONNECTION
                 Log.d(TAG, "No internet connection $e")
             }

@@ -10,8 +10,13 @@ interface EqDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserAll(eqList: MutableList<EarthquakeModel>)
 
+    //viene ordenado por tiempo
     @Query("SELECT * FROM tbl_eartquakes")
-    fun getEarthquakes(): LiveData<MutableList<EarthquakeModel>>
+    fun getEarthquakes(): MutableList<EarthquakeModel>
+
+    //ordenamos por magnitud
+    @Query("SELECT * FROM tbl_eartquakes order by magnintude ASC")
+    fun getEarthquakesByMagnitude(): MutableList<EarthquakeModel>
 
 
 
