@@ -19,6 +19,12 @@ class MainRepository(private val dataBase: EqDataBase) {
             //como ya tenemos los datos ahora hay que guardarlos en la db
             dataBase.eqDao.inserAll(eqList)//insertamos los valores
 
+            fetchEartquakesFromDb(sortByMagnitude)
+        }
+    }
+
+    suspend fun fetchEartquakesFromDb(sortByMagnitude: Boolean): MutableList<EarthquakeModel> {
+        return withContext(Dispatchers.IO) {
             if (sortByMagnitude) {
                 dataBase.eqDao.getEarthquakesByMagnitude()
             } else {

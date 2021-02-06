@@ -28,7 +28,7 @@ class MainviewModel(application: Application): AndroidViewModel(application) {
         reloadEarthquakes(false)
     }
 
-    fun reloadEarthquakes(sortByMagnitude: Boolean) {
+    private fun reloadEarthquakes(sortByMagnitude: Boolean) {
         viewModelScope.launch {
             try {
                 _status.value = StatusResponse.LOADING
@@ -38,6 +38,12 @@ class MainviewModel(application: Application): AndroidViewModel(application) {
                 _status.value = StatusResponse.NOT_INTERNET_CONNECTION
                 Log.d(TAG, "No internet connection $e")
             }
+        }
+    }
+
+    fun reloadEarthquakesFromDb(sortByMagnitude: Boolean) {
+        viewModelScope.launch {
+           _eqList.value = repo.fetchEartquakesFromDb(sortByMagnitude)
         }
     }
 }

@@ -67,10 +67,10 @@ class MainActivity : AppCompatActivity() {
         val itemId = item.itemId
         when(itemId) {
             R.id.main_menu_sort_magnitude -> {
-                viewModel.reloadEarthquakes(true)
+                viewModel.reloadEarthquakesFromDb(true)
             }
             R.id.main_menu_sort_time -> {
-                viewModel.reloadEarthquakes(false)
+                viewModel.reloadEarthquakesFromDb(false)
             }
         }
 
