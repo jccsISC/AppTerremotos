@@ -1,20 +1,25 @@
-package com.jccsisc.earthaquakemonitor.repository
+package com.jccsisc.earthaquakemonitor.main
 
-import com.jccsisc.earthaquakemonitor.data.model.EarthquakeModel
-import com.jccsisc.earthaquakemonitor.data.model.EqJsonResponse
-import com.jccsisc.earthaquakemonitor.service
+import androidx.lifecycle.LiveData
+import com.jccsisc.earthaquakemonitor.EarthquakeModel
+import com.jccsisc.earthaquakemonitor.api.EqJsonResponse
+import com.jccsisc.earthaquakemonitor.api.service
+import com.jccsisc.earthaquakemonitor.database.EqDataBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MainRepository {
+//le pasamos la base de datos
+class MainRepository(private val dataBase: EqDataBase) {
 
-    suspend fun fetchEartquakes(): MutableList<EarthquakeModel> {
+    val eqList: LiveData<MutableList<EarthquakeModel>> = dataBase.eqDao.getEarthquakes()
+
+    suspend fun fetchEartquakes() {
         return withContext(Dispatchers.IO) {
             val eqJsonResponse = service.getLastHourEartquakes() //obtenemos los datos del servicio
             val eqList = parseEqResult(eqJsonResponse)
 
-            //lo ultimo en la corutina es lo que devuelv
-            eqList
+            //como ya tenemos los datos ahora hay que guardarlos en la db
+            dataBase.eqDao.inserAll(eqList)//insertamos los valores
         }
     }
 

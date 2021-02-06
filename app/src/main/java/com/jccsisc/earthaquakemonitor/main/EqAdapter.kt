@@ -1,4 +1,4 @@
-package com.jccsisc.earthaquakemonitor.ui.adapter
+package com.jccsisc.earthaquakemonitor.main
 
 import android.content.Context
 import android.util.Log
@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.jccsisc.earthaquakemonitor.EarthquakeModel
 import com.jccsisc.earthaquakemonitor.R
-import com.jccsisc.earthaquakemonitor.data.model.EarthquakeModel
 import com.jccsisc.earthaquakemonitor.databinding.ItemEqBinding
-import kotlin.coroutines.coroutineContext
 
 //darle el nombre de la clase a nuestro TAG
 private val TAG = EqAdapter::class.java.simpleName

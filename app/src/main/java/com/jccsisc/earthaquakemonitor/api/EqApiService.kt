@@ -1,6 +1,5 @@
-package com.jccsisc.earthaquakemonitor
+package com.jccsisc.earthaquakemonitor.api
 
-import com.jccsisc.earthaquakemonitor.data.model.EqJsonResponse
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET

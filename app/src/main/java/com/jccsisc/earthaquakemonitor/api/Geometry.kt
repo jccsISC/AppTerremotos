@@ -1,4 +1,4 @@
-package com.jccsisc.earthaquakemonitor.data.model
+package com.jccsisc.earthaquakemonitor.api
 
 class Geometry(private val coordinates: Array<Double>) {
     val longitude: Double
