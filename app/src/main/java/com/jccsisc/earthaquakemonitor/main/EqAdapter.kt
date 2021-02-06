@@ -53,7 +53,7 @@ class EqAdapter(private val context: Context): ListAdapter<EarthquakeModel, EqAd
             root.setOnClickListener {
                 //si está inicializada la variable landa mandamos llamar el onItemClickListener
                 if (::onItemClickListener.isInitialized) {
-                    onItemClickListener(earthquake) //llamamos nuestro landa, donde loo usemos le asignamos la accion
+                    onItemClickListener(earthquake) //llamamos nuestro landa, donde lo usemos le asignamos la accion
                 } else {
                     Log.e(TAG, "onItemClickListener no inicializado")
                 }

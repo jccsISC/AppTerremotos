@@ -1,11 +1,13 @@
 package com.jccsisc.earthaquakemonitor.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.jccsisc.earthaquakemonitor.DetailsActivity
 import com.jccsisc.earthaquakemonitor.EarthquakeModel
 import com.jccsisc.earthaquakemonitor.api.StatusResponse
 import com.jccsisc.earthaquakemonitor.databinding.ActivityMainBinding
@@ -47,7 +49,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         adapter.onItemClickListener = {
-            Toast.makeText(this, it.place, Toast.LENGTH_SHORT).show()
+            val intent = Intent(applicationContext, DetailsActivity::class.java)
+            intent.putExtra("model", it)
+            startActivity(intent)
         }
     }
 
