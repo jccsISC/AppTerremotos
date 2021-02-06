@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 it == StatusResponse.NOT_INTERNET_CONNECTION -> {
                     binding.progressCircular.visibility = View.GONE
-                    Toast.makeText(this, "No hay conexión a internet", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "No hay conexión a internet \uD83E\uDD7A", Toast.LENGTH_SHORT).show()
                 }
             }
         })
