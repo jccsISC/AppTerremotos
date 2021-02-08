@@ -1,6 +1,5 @@
 package com.jccsisc.earthaquakemonitor.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.jccsisc.earthaquakemonitor.EarthquakeModel
 
@@ -8,7 +7,7 @@ import com.jccsisc.earthaquakemonitor.EarthquakeModel
 interface EqDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun inserAll(eqList: MutableList<EarthquakeModel>)
+    fun insertAll(eqList: MutableList<EarthquakeModel>)
 
     //viene ordenado por tiempo
     @Query("SELECT * FROM tbl_eartquakes")

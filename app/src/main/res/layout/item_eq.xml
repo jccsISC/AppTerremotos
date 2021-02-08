@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:background="?attr/selectableItemBackground"
-        android:padding="16dp">
+        android:background="?attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/tvMagnitude"
@@ -20,6 +19,7 @@
             android:textSize="24sp"
             android:textColor="@color/black"
             android:textStyle="bold"
+            android:padding="16dp"
             tools:text="4.3" />
 
         <ImageView
@@ -27,7 +27,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow"
+            android:padding="16dp"
             android:layout_centerInParent="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:textSize="13sp"
+            tools:text="11:50:00"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true" />
 
         <TextView
@@ -38,8 +50,10 @@
             android:textSize="24sp"
             android:textColor="@color/black"
             tools:text="80 Km E NY"
+            android:padding="16dp"
             android:layout_marginHorizontal="16dp"
             android:layout_toStartOf="@id/imvArrow"
             android:layout_toEndOf="@id/tvMagnitude" />
+
     </RelativeLayout>
 </layout>

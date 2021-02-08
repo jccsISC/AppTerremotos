@@ -3,6 +3,7 @@ package com.jccsisc.earthaquakemonitor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.jccsisc.earthaquakemonitor.databinding.ActivityDetailsBinding
+import com.jccsisc.earthaquakemonitor.main.MainActivity
 import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
@@ -17,7 +18,7 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        model = intent.getParcelableExtra<EarthquakeModel>("model")
+        model = intent.getParcelableExtra<EarthquakeModel>(MainActivity.EARRTHQUAKER_KEY)
 
         binding.apply {
             txtMagnitude.text = baseContext.getString(R.string.magnitude_format, model?.magnintude)

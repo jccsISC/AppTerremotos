@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jccsisc.earthaquakemonitor.EarthquakeModel
 import com.jccsisc.earthaquakemonitor.R
 import com.jccsisc.earthaquakemonitor.databinding.ItemEqBinding
+import java.sql.Time
 
 //darle el nombre de la clase a nuestro TAG
 private val TAG = EqAdapter::class.java.simpleName
@@ -48,6 +49,8 @@ class EqAdapter(private val context: Context): ListAdapter<EarthquakeModel, EqAd
         //creando un metodo par recibir un modelo
         fun bind(earthquake: EarthquakeModel) = with(binding) {
             tvMagnitude.text = context.getString(R.string.magnitude_format, earthquake.magnintude)
+            val time = Time( earthquake.time)
+            tvTime.text = "$time"
             tvPlace.text = earthquake.place
 
             root.setOnClickListener {

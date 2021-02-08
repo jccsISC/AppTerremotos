@@ -1,6 +1,5 @@
 package com.jccsisc.earthaquakemonitor.main
 
-import androidx.lifecycle.LiveData
 import com.jccsisc.earthaquakemonitor.EarthquakeModel
 import com.jccsisc.earthaquakemonitor.api.EqJsonResponse
 import com.jccsisc.earthaquakemonitor.api.service
@@ -17,12 +16,13 @@ class MainRepository(private val dataBase: EqDataBase) {
             val eqList = parseEqResult(eqJsonResponse)
 
             //como ya tenemos los datos ahora hay que guardarlos en la db
-            dataBase.eqDao.inserAll(eqList)//insertamos los valores
+            dataBase.eqDao.insertAll(eqList)//insertamos los valores
 
             fetchEartquakesFromDb(sortByMagnitude)
         }
     }
 
+    //trallendo datos desde la base de datos room
     suspend fun fetchEartquakesFromDb(sortByMagnitude: Boolean): MutableList<EarthquakeModel> {
         return withContext(Dispatchers.IO) {
             if (sortByMagnitude) {
