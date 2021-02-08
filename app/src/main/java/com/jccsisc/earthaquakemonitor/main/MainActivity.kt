@@ -14,6 +14,7 @@ import com.jccsisc.earthaquakemonitor.DetailsActivity
 import com.jccsisc.earthaquakemonitor.EarthquakeModel
 import com.jccsisc.earthaquakemonitor.R
 import com.jccsisc.earthaquakemonitor.api.StatusResponse
+import com.jccsisc.earthaquakemonitor.api.WorkerUtil
 import com.jccsisc.earthaquakemonitor.databinding.ActivityMainBinding
 
 private const val SORT_TYPE_KEY = "sort_type"
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        WorkerUtil.scheduleSync(this)
 
         sortType = getSortType()
         Log.d("sortType", sortType.toString())

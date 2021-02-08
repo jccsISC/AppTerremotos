@@ -49,8 +49,7 @@ class EqAdapter(private val context: Context): ListAdapter<EarthquakeModel, EqAd
         //creando un metodo par recibir un modelo
         fun bind(earthquake: EarthquakeModel) = with(binding) {
             tvMagnitude.text = context.getString(R.string.magnitude_format, earthquake.magnintude)
-            val time = Time( earthquake.time)
-            tvTime.text = "$time"
+            tvTime.text = Time( earthquake.time).toString()
             tvPlace.text = earthquake.place
 
             root.setOnClickListener {

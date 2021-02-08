@@ -26,9 +26,10 @@ class MainviewModel(application: Application, private val sortType: Boolean): An
     get() = _eqList
 
     init {
-        reloadEarthquakes() //siempre lo va a ordenar por tiempo por defecto
+       reloadEarthquakesFromDb(sortType)
     }
 
+    //datos de internet
     private fun reloadEarthquakes() {
         viewModelScope.launch {
             try {
@@ -47,6 +48,10 @@ class MainviewModel(application: Application, private val sortType: Boolean): An
     fun reloadEarthquakesFromDb(sortByMagnitude: Boolean) {
         viewModelScope.launch {
            _eqList.value = repo.fetchEartquakesFromDb(sortByMagnitude)
+
+            if (_eqList.value!!.isEmpty()) {
+                reloadEarthquakes() //lo sjalamos de internet si es vacía la base de datos local
+            }
         }
     }
 }
