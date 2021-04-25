@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by lazy {
         ViewModelProvider(this, MainViewModelFactory(application, sortType)).get(MainviewModel::class.java)
     }
-    private val adapter = EqAdapter(this)
+    private val adapter = EqAdapter()
 
     companion object {
         const val EARRTHQUAKER_KEY = "earquathker"

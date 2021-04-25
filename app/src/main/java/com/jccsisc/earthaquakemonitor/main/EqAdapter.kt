@@ -15,7 +15,7 @@ import java.sql.Time
 //darle el nombre de la clase a nuestro TAG
 private val TAG = EqAdapter::class.java.simpleName
 //extendemos de un ListAdapter                                    recibimos el DiffCallback
-class EqAdapter(private val context: Context): ListAdapter<EarthquakeModel, EqAdapter.EqViewHolder>(DiffCallback) {
+class EqAdapter(): ListAdapter<EarthquakeModel, EqAdapter.EqViewHolder>(DiffCallback) {
 
     //click con Lambda al dale clic nos retorna un terremoto
     lateinit var onItemClickListener: (EarthquakeModel) -> Unit
@@ -48,7 +48,7 @@ class EqAdapter(private val context: Context): ListAdapter<EarthquakeModel, EqAd
     inner class EqViewHolder(private val binding: ItemEqBinding) : RecyclerView.ViewHolder(binding.root) {
         //creando un metodo par recibir un modelo
         fun bind(earthquake: EarthquakeModel) = with(binding) {
-            tvMagnitude.text = context.getString(R.string.magnitude_format, earthquake.magnintude)
+            tvMagnitude.text = root.context.getString(R.string.magnitude_format, earthquake.magnintude)
             tvTime.text = Time( earthquake.time).toString()
             tvPlace.text = earthquake.place
 
